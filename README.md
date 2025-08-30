@@ -1,6 +1,8 @@
 # pixel-paradise
 A Touhou-Inspired Theme for Etterna
 
+**only works on 16:9 resolutions, 4:3 will come at a later patch
+
 <img src="https://raw.githubusercontent.com/ifwas/pixel-paradise/main/Graphics/spr/screenshotexamples/1.png"/>
 <img src="https://raw.githubusercontent.com/ifwas/pixel-paradise/main/Graphics/spr/screenshotexamples/2.png"/>
 <img src="https://raw.githubusercontent.com/ifwas/pixel-paradise/main/Graphics/spr/screenshotexamples/3.png"/>
