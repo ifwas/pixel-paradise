@@ -303,7 +303,7 @@ t[#t + 1] = Def.ActorFrame {
 t[#t + 1] = LoadActor("_frame")
 t[#t + 1] = LoadFont("Common Large") .. {
 	InitCommand = function(self)
-		self:xy(10, 25):halign(0):valign(1):zoom(0.3):diffuse(getMainColor("positive"))
+		self:xy(13, 25):halign(0):valign(1):zoom(0.3):diffuse(getMainColor("positive"))
 		self:settextf("%s:", translated_info["Title"])
 	end
 }
