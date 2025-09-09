@@ -1,5 +1,5 @@
 # pixel-paradise
-A Touhou-Inspired Theme for Etterna
+A Touhou-Inspired Theme for Etterna 0.74.4
 
 **only works on 16:9 resolutions, 4:3 will come at a later patch
 
