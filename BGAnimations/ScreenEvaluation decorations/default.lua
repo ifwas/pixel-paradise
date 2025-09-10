@@ -1346,7 +1346,7 @@ local function scoreBoard(pn, position)
 			Def.Quad {
 				Name = "BG",
 				InitCommand = function(self)
-					self:diffuesalpha(0)
+					self:diffusealpha(0)
 					self:xy(frameWidth + 25, frameY + 226)
 					self:zoomto(frameWidth / 2 + 10, 56.5)
 					self:halign(1):valign(0)

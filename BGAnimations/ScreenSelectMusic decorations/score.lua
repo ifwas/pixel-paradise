@@ -659,7 +659,13 @@ local function makeJudge(index, judge)
 			end,
 			DisplayCommand = function(self)
 				local tapss = math.max(1, getMaxNotes(pn))
-				local countt = getScoreTapNoteScore(score, judge)
+				local countt
+
+				if judge ~= "HoldNoteScore_Held" and judge ~= "HoldNoteScore_LetGo" then
+				    countt = getScoreTapNoteScore(score, judge)
+				else
+					countt = getScoreHoldNoteScore(score, judge)
+				end
 
 				self:diffuse(byJudgment(judge))
 				self:diffusealpha(0.5)
