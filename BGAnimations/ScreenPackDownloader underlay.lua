@@ -73,7 +73,13 @@ local o = Def.ActorFrame {
 
 }
 
-
+o[#o + 1] = Def.Sound{
+		File=THEME:GetPathS("", "packdown"),
+		Name="music",
+		OnCommand=function(self)
+		   self:play()
+		end
+}
 
 
 o[#o + 1] = LoadActor(THEME:GetPathG("", "MusicRoomBG")) ..  {
@@ -91,7 +97,11 @@ o[#o + 1] = LoadActor(THEME:GetPathG("", "maskingBGMusic")) ..  {
 }
 
 
-
+o[#o + 1] = LoadActor(THEME:GetPathG("", "MusicRoomFG")) ..  {
+	OnCommand = function(self)
+		self:zoomto(SCREEN_WIDTH, SCREEN_HEIGHT):Center():diffusealpha(1):SetTextureFiltering(false)
+	end
+}
 
 o[#o+1] = Def.ActorFrame {
 	Name = "LeftButtonFrame",
@@ -201,7 +211,7 @@ local function tagframe()
 	local curpage = 1
 
 	local frameBGHeight = SCREEN_HEIGHT - (f0y-30) - leftSpace
-	local frameBGWidth = SCREEN_WIDTH / 3
+	local frameBGWidth = SCREEN_WIDTH / 3.5
 	local tagSpacing = 2
 	local tagHeight = ((frameBGHeight * 0.7) / maxtags)
 	local tagWidth = frameBGWidth - tagSpacing*2

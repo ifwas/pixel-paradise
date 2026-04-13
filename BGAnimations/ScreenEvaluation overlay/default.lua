@@ -30,7 +30,7 @@ t[#t + 1] = LoadFont("Common Large") .. {
 t[#t + 1] = UIElements.SpriteButton(1, 1, nil) .. {
 	Texture= GAMESTATE:GetCurrentSong():GetCDTitlePath(),
 	InitCommand=function(self)
-		self:xy(SCREEN_CENTER_X - 80, SCREEN_BOTTOM - 65):bob():effectmagnitude(0,1,0)
+		self:xy(SCREEN_CENTER_X - capWideScale(15,80), SCREEN_BOTTOM - 65):bob():effectmagnitude(0,1,0)
 
 		local height = self:GetHeight()
 		local width = self:GetWidth()

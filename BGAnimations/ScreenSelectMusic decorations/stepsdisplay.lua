@@ -1,5 +1,5 @@
 local itsOn = false -- chart preview state
-local stepsdisplayx = SCREEN_WIDTH * 0.43
+local stepsdisplayx = SCREEN_WIDTH * capWideScale(0.4,0.43)
 local thesteps = {}
 
 local rowwidth = 51
@@ -68,18 +68,6 @@ local sd = Def.ActorFrame {
 					end
 				)
 			end
-		end
-	end,
-	ChartPreviewOnMessageCommand = function(self)
-		if not itsOn then
-			self:addx(capWideScale(12, 0)):addy(capWideScale(18, 0))
-			itsOn = true
-		end
-	end,
-	ChartPreviewOffMessageCommand = function(self)
-		if itsOn then
-			self:addx(capWideScale(-12, 0)):addy(capWideScale(-18, 0))
-			itsOn = false
 		end
 	end,
 	CalcInfoOnMessageCommand = function(self)

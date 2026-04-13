@@ -2,13 +2,13 @@
 local update = false
 local steps
 local song
-local frameX = capWideScale(270,380)
+local frameX = capWideScale(170,380)
 local frameY = 40
 local frameWidth = SCREEN_WIDTH * 0.56
 local frameHeight = 368
 local fontScale = 0.4
 local distY = 15
-local offsetX = 10
+local offsetX = capWideScale(0,10)
 local offsetY = 20
 local pn = GAMESTATE:GetEnabledPlayers()[1]
 local greatest = 0
@@ -121,7 +121,7 @@ local function littlebits(i)
 		},
 		LoadFont("Common Large") .. {
 			InitCommand = function(self)
-				self:xy(frameX + capWideScale(270, 450), frameY + 100 + txtDist * i):halign(1):valign(0):zoom(0.55):maxwidth(110 / 0.55)
+				self:xy(frameX + capWideScale(400, 450), frameY + 100 + txtDist * i):halign(1):valign(0):zoom(0.55):maxwidth(110 / 0.55)
 			end,
 			SetCommand = function(self)
 				if song and steps then
@@ -164,7 +164,7 @@ t[#t + 1] = LoadFont("Common Large") .. {
 -- Music Rate Display
 t[#t + 1] = LoadFont("Common Large") .. {
 	InitCommand = function(self)
-		self:xy(frameX + capWideScale(290,440), frameY + offsetY + 44):visible(true):halign(1):zoom(0.3)
+		self:xy(frameX + capWideScale(440,440), frameY + offsetY + 44):visible(true):halign(1):zoom(0.3)
 	end,
 	SetCommand = function(self)
 		if steps then
@@ -179,7 +179,7 @@ t[#t + 1] = LoadFont("Common Large") .. {
 t[#t + 1] = LoadFont("Common Normal") .. {
 	Name = "StepsAndMeter",
 	InitCommand = function(self)
-		self:xy(frameX + offsetX + 270, frameY + offsetY + 44):zoom(0.5):halign(1):maxwidth(350)
+		self:xy(frameX + offsetX + capWideScale(280,270), frameY + offsetY + 44):zoom(0.5):halign(1):maxwidth(350)
 	end,
 	SetCommand = function(self)
 		steps = GAMESTATE:GetCurrentSteps()
@@ -201,7 +201,7 @@ t[#t + 1] = LoadFont("Common Normal") .. {
 t[#t + 1] = LoadFont("Common Normal") .. {
 	Name = "NPS",
 	InitCommand = function(self)
-		self:xy(frameX + offsetX + 380, frameY + offsetY + 44):zoom(0.45):halign(1)
+		self:xy(frameX + offsetX + capWideScale(400,380), frameY + offsetY + 44):zoom(0.45):halign(1)
 	end,
 	SetCommand = function(self)
 		steps = GAMESTATE:GetCurrentSteps()

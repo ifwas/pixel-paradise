@@ -52,7 +52,7 @@ t[#t + 1] = LoadActor("currentsort")
 t[#t + 1] = UIElements.SpriteButton(1, 1, THEME:GetPathG("", "spr/wheel/randomSongbutton")) .. {
 	Name="rando",
 	InitCommand = function(self)
-		self:xy(370, 42):halign(0):valign(1):zoom(0.5):bob():effectmagnitude(0,-1,0)
+		self:xy(capWideScale(290,370), 42):halign(0):valign(1):zoom(0.5):bob():effectmagnitude(0,-1,0)
 	end,
 	MouseOverCommand = function(self)
 		self:diffusealpha(hoverAlpha)

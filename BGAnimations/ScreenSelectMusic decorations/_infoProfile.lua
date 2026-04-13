@@ -11,10 +11,10 @@ local playCount = 0
 local playTime = 0
 local noteCount = 0
 local numfaves = 0
-local AvatarX = 750
+local AvatarX = capWideScale(570,750)
 local AvatarY = SCREEN_CENTER_Y + 70
 
-local statsX = AvatarX - 340
+local statsX = AvatarX - capWideScale(290,340)
 local statsY = AvatarY - 10
 
 local statexplainX = statsX + 150
@@ -313,8 +313,7 @@ t[#t + 1] = Def.ActorFrame {
 				return
 			end
 			self:settextf(
-				"%s %s (%5.2f: #%i)",
-				translated_info["LoggedInAs"],
+				"%s (%5.2f: #%i)",
 				DLMAN:GetUsername(),
 				DLMAN:GetSkillsetRating("Overall"),
 				DLMAN:GetSkillsetRank(ms.SkillSets[1])

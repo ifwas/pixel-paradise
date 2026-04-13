@@ -69,8 +69,8 @@ local t =
 	end,
 }
 
-local frameWidth = capWideScale(get43size(450), 450) / (#tabNames - 1)
-local frameX = frameWidth / 2 + 360
+local frameWidth = capWideScale(get43size(470), 450) / (#tabNames - 1)
+local frameX = frameWidth / 2 + capWideScale(250,360)
 local frameY = SCREEN_HEIGHT - 15
 
 local function tabs(index)

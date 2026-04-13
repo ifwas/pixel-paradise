@@ -5,8 +5,8 @@ local tst = ms.JudgeScalers
 local judge = GetTimingDifficulty()
 local tso = tst[judge]
 
-local plotWidth, plotHeight = 400, 120
-local plotX, plotY = 450 - 5 - plotWidth / 2, SCREEN_HEIGHT - 120 - plotHeight / 2
+local plotWidth, plotHeight = capWideScale(350,400), capWideScale(90,120)
+local plotX, plotY = capWideScale(375,450) - 5 - plotWidth / 2, SCREEN_HEIGHT - 130 - plotHeight / 2
 local dotDims, plotMargin = 2, 4
 local maxOffset = math.max(180, 180 * tso)
 local baralpha = 0.2
@@ -277,7 +277,7 @@ local o = Def.ActorFrame {
 -- Background
 o[#o + 1] = Def.Sprite {
 	InitCommand = function(self)
-		self:Load(THEME:GetPathG("", "spr/evaluation/offsetplotbox")):SetTextureFiltering(false):zoom(0.45)
+		self:Load(THEME:GetPathG("", "spr/evaluation/offsetplotbox")):SetTextureFiltering(false):zoom(capWideScale(0.39,0.45))
 		self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 	end
 }

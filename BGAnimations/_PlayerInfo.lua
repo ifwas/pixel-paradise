@@ -5,6 +5,7 @@ local t =
 }
 
 local profile
+local frameexponent = 1
 local avatarexponent = 0.98
 local profileName = THEME:GetString("GeneralInfo", "NoProfile")
 local playCount = 0
@@ -205,6 +206,13 @@ t[#t + 1] = Def.ActorFrame {
 				local top = SCREENMAN:GetTopScreen()
 				SCREENMAN:SetNewScreen("ScreenAssetSettings")
 			end
+		end
+	},
+	Def.Sprite{
+		InitCommand = function(self)
+			self:Load(THEME:GetPathG("","spr/evaluation/portrait"))
+			self:visible(true):halign(0):valign(0):xy(AvatarX, AvatarY)
+			self:zoomto(AvatarSize * frameexponent, AvatarSize * frameexponent)
 		end
 	},
 	UIElements.TextToolTip(1, 1, "Common Normal") .. {

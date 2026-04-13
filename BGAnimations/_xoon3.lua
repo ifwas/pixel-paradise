@@ -22,25 +22,33 @@ local Params = {
 	BobZ = 52,
 };
 
+local tableImages = {
+	"quad",
+	"trianguel",
+	"hexagon",
+	"pentagon"
+}
+
 local tParticleInfo = {}
+local image
 
 for i=1,Params.NumParticles do
 	tParticleInfo[i] = {
 		X = math.random(Params.VelocityXMin, Params.VelocityXMax),
 		Y = Params.VelocityYMin ~= Params.VelocityYMax and math.random(Params.VelocityYMin, Params.VelocityYMax) or Params.VelocityYMin,
 		Z = Params.VelocityZMin ~= Params.VelocityZMax and math.random(Params.VelocityZMin, Params.VelocityZMax) or Params.VelocityZMin,
-		Zoom = math.random(Params.ZoomMin*1000,Params.ZoomMax*1000) / 1000,
+		Zoom = math.random(Params.ZoomMin*5,Params.ZoomMax*5) / 1000,
 		BobZRate = math.random(Params.BobRateZMin*1000,Params.BobRateZMax*1000) / 1000,
 		Age = 0,
 	};
-	t[#t+1] = Def.Quad {
-	Name="Particle"..i,
+	t[#t+1] = Def.Sprite {
+		Name="Particle"..i,
 		InitCommand=function(self)
+		self:Load(THEME:GetPathG("", tableImages[math.random(1,4)]))
 		self:basezoom(tParticleInfo[i].Zoom);
 		self:x(math.random(SCREEN_LEFT+(self:GetWidth()/2),SCREEN_RIGHT-(self:GetWidth()/2)));
 		self:y(math.random(SCREEN_TOP+(self:GetHeight()/2),SCREEN_BOTTOM-(self:GetHeight()/2)));
 		self:z(math.random(-64,0))
-		
 	end,
 		OnCommand=function(self)
 		self:diffusealpha(1):spin():effectmagnitude(0,0,math.random(Params.SpinZMin, Params.SpinZMx)):effectclock("timerglobal"):diffuse(color("#000000")):blend("BlendMode_Modulate")

@@ -45,12 +45,12 @@ local dvt = {}
 local totalTaps = 0
 local pss = STATSMAN:GetCurStageStats():GetPlayerStageStats()
 
-local frameRadarX = 80
+local frameRadarX = capWideScale(40,80)
 local frameRadarY = SCREEN_BOTTOM - 105
 
-local frameX = 500
+local frameX = capWideScale(390,500)
 local frameY = 230
-local frameWidth = SCREEN_CENTER_X - 100
+local frameWidth = capWideScale(235, 330)
 
 -- dont default to using custom windows and dont persist that state
 -- custom windows are meant to be used as a thing you occasionally check, not the primary way to play the game
@@ -72,7 +72,7 @@ t[#t+1] = Def.ActorFrame {
 	LoadFont("Common Large") .. {
 		Name = "SongTitle",
 		InitCommand = function(self)
-			self:xy(SCREEN_CENTER_X, capWideScale(124, 55))
+			self:xy(SCREEN_CENTER_X, 55)
 			self:zoom(0.4)
 			self:maxwidth(capWideScale(250 / 0.25, 180 / 0.2))
 		end,
@@ -86,7 +86,7 @@ t[#t+1] = Def.ActorFrame {
 	LoadFont("Common Large") .. {
 		Name = "SongArtist",
 		InitCommand = function(self)
-			self:xy(SCREEN_CENTER_X, capWideScale(139, 74))
+			self:xy(SCREEN_CENTER_X, 74)
 			self:zoom(0.3)
 			self:maxwidth(180 / 0.25)
 		end,
@@ -100,7 +100,7 @@ t[#t+1] = Def.ActorFrame {
 	LoadFont("Common Large") .. {
 		Name = "RateString",
 		InitCommand = function(self)
-			self:xy(SCREEN_CENTER_X, capWideScale(154, 90))
+			self:xy(SCREEN_CENTER_X, 90)
 			self:zoom(0.3)
 			self:halign(0.5)
 			self:queuecommand("Set")
@@ -129,7 +129,8 @@ t[#t+1] = Def.ActorFrame {
 	LoadFont("Common Large") .. {
 		Name = "Subtitle",
 		InitCommand = function(self)
-			self:xy(SCREEN_CENTER_X + capWideScale(get43size(150),0), SCREEN_BOTTOM - 10)
+			self:halign(0.5)
+			self:xy(SCREEN_CENTER_X, SCREEN_BOTTOM - 10)
 			self:zoom(0.25)
 			self:maxwidth(capWideScale(500 / 0.25, 500 / 0.25))
 		end,
@@ -281,8 +282,8 @@ local function scoreBoard(pn, position)
 		end,
 		Def.Sprite {
 		    InitCommand = function(self)
-			    self:xy(frameX - 7, frameY):zoom(0.45):halign(0):valign(0)
-			    self:Load(THEME:GetPathG("","spr/evaluation/wifebox")):SetTextureFiltering(false)
+				self:Load(THEME:GetPathG("","spr/evaluation/wifebox")):SetTextureFiltering(false)
+			    self:xy(frameX - 7, frameY):zoomto(capWideScale(250, 345), 230):halign(0):valign(0)
 			    self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 		end
 	    },
@@ -499,7 +500,7 @@ local function scoreBoard(pn, position)
 			Name = "MaxComboNum",
 			InitCommand = function(self)
 				self:xy(frameX, frameY + 210):halign(0)
-				self:zoom(0.3)
+				self:zoom(capWideScale(0.24,0.3))
 				self:settext("")
 			end,
 			BeginCommand = function(self)
@@ -1420,6 +1421,33 @@ local function scoreBoard(pn, position)
 
 	return t
 end
+
+--thank you poco for helping me get the music to stop when you leave the screen
+t[#t+1] = Def.Actor {
+    OnCommand = function(self)
+        self:queuecommand("z")
+    end,
+    zCommand = function(self)
+        local musicPath = "/Themes/" .. THEME:GetCurThemeName() .. "/Sounds/Music/"
+        local songfiles = FILEMAN:GetDirListing(musicPath, 0, true)
+        
+        if #songfiles > 0 then
+            local randomsel = songfiles[math.random(#songfiles)]
+            local songFileName = randomsel:match("([^/]+)$")
+            local songTitle, artist = songFileName:match("(.+)%s*%-+%s*(.+)%.%w+$")
+            
+            if not songTitle then
+                songTitle = songFileName:gsub("(%..+)$", ""):gsub("_", " ")
+                artist = "Unknown Artist"
+            end
+
+            SOUND:StopMusic()
+            SOUND:PlayMusicPart(randomsel, 0, 1000)
+        else
+            ms.ok("No music found")
+        end
+    end
+}
 
 if GAMESTATE:IsPlayerEnabled() then
 	t[#t + 1] = scoreBoard(PLAYER_1, 0)

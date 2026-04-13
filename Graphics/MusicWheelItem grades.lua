@@ -1,7 +1,7 @@
 return Def.ActorFrame {
 	Def.Quad { --todo: modify to make it fancier, use an icon, dunno
 		InitCommand = function(self)
-			self:xy(350, -2):zoomto(4, 30):fadetop(0.5):fadebottom(0.5)
+			self:xy(capWideScale(250,350), -2):zoomto(4, 30):fadetop(0.5):fadebottom(0.5)
 		end,
 		SetGradeCommand = function(self, params)
 			if params.HasGoal then
@@ -29,7 +29,7 @@ return Def.ActorFrame {
 	},
 	Def.Sprite {
 		InitCommand = function(self)
-			self:xy(355, 10):zoomto(4, 19):halign(0)
+			self:xy(capWideScale(270,355), 10):zoomto(4, 19):spin()
 		end,
 		SetGradeCommand = function(self, params)
 			if params.PermaMirror then
@@ -43,7 +43,7 @@ return Def.ActorFrame {
 	},
 	Def.Sprite {
 		InitCommand = function(self)
-			self:xy(355, -15):zoomto(15, 15)
+			self:xy(capWideScale(270,355), -15):zoomto(15, 15):wag()
 		end,
 		SetGradeCommand = function(self, params)
 			if params.Favorited then

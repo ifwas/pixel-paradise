@@ -12,7 +12,7 @@ t[#t + 1] = LoadActor(THEME:GetPathG("", "_screnop")) .. {
 	OnCommand = function(self)
 		self:FullScreen():zoom(1):visible(0):diffusealpha(1)
 		if not inScreenSelectMusic then
-			self:visible(1):decelerate(0.1):diffusealpha()
+			self:visible(1):decelerate(0.1):diffusealpha(0.9)
 		end
 	end
 }

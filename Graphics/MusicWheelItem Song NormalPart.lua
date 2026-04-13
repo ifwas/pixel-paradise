@@ -2,12 +2,19 @@ local lastclick = GetTimeSinceStart()
 local requiredtimegap = 0.1
 local t =  Def.ActorFrame{}
 
+local w = 354
+local h = 57
+
+if not IsUsingWideScreen() then 
+w = 354 / 1.4
+end
+
 t[#t + 1] = UIElements.SpriteButton(1, 1, THEME:GetPathG("", "spr/wheel/ItemWheel")) .. {
 		InitCommand = function(self)
 			self:halign(0)
 			self:xy(0,0)
 			self:diffusealpha(1)
-			self:zoomto(354, 57)
+			self:zoomto(w, h)
 		end,
         SetCommand = function(self, params)
             self.index = params.DrawIndex

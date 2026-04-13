@@ -62,7 +62,7 @@ t[#t + 1] = LoadFont("Common Normal") .. {
     InitCommand = function(self)
         self:CenterX():y(SCREEN_CENTER_Y + 10)
         self:settext("This theme is a work of fiction. All characters and organizations that appear have passed into fantasy.")
-        self:zoom(0.6)
+        self:zoom(capWideScale(0.43,0.6))
         self:diffuse(color("#66CC66"))
         self:diffusealpha(0)
         self:sleep(0.5):linear(1):diffusealpha(1):sleep(1.75)

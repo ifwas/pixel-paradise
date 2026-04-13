@@ -1,5 +1,5 @@
 local profile = PROFILEMAN:GetProfile(PLAYER_1)
-local frameX = 700
+local frameX = 500 + capWideScale(get43size(0), 200)
 local frameY = 340 + capWideScale(get43size(120), 90)
 local frameWidth = capWideScale(get43size(455), 455)
 local score
@@ -369,8 +369,8 @@ local t = Def.ActorFrame {
 
 t[#t + 1] = Def.Sprite {
 	InitCommand = function(self)
-		self:xy(556, 73)
-		self:Load(THEME:GetPathG("", "spr/wheel/ratecontainer")):SetTextureFiltering(false):zoom(0.45):halign(1)
+		self:xy(capWideScale(420,556), 73)
+		self:Load(THEME:GetPathG("", "spr/wheel/ratecontainer")):SetTextureFiltering(false):zoomto(130,26):halign(1)
 		self:visible(true)
 		self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 	end,
@@ -383,27 +383,11 @@ t[#t + 1] = Def.Sprite {
 	end
 }
 
-t[#t + 1] = Def.Sprite {
-	InitCommand = function(self)
-		self:xy(556, 73)
-		self:Load(THEME:GetPathG("", "spr/wheel/ratecontainer")):SetTextureFiltering(false):zoom(0.45):halign(1)
-		self:visible(true)
-		self:diffuse(ColorMultiplier(getMainColor("highlight"),0.75))
-		self:diffusealpha(0.2):blend(Blend.Add)
-	end,
-	MintyFreshCommand = function(self)
-		if song then
-			self:visible(true)
-		else
-			self:visible(false)
-		end
-	end
-}
 
 -- Music Rate Display
 t[#t + 1] = UIElements.TextToolTip(1, 1, "Common Large") .. {
 	InitCommand = function(self)
-		self:xy(536, 73):visible(true):halign(1):zoom(0.36):maxwidth(
+		self:xy(capWideScale(390,536), 73):visible(true):halign(1):zoom(0.36):maxwidth(
 			capWideScale(get43size(360), 360) / capWideScale(get43size(0.45), 0.45)
 		)
 	end,
@@ -792,11 +776,14 @@ t[#t + 1] =LoadFont("Common Normal") .. {
 	end
 }
 
+local bannerw = 384
+local bannerh = 120
+
 t[#t + 1] = Def.Sprite {
 	Name = "Banner",
 	InitCommand = function(self)
-		self:x(440):y(90):halign(0):valign(0)
-		self:scaletoclipped(capWideScale(get43size(384), 384), capWideScale(get43size(120), 120)):diffusealpha(1)
+		self:x(capWideScale(300,440)):y(90):halign(0):valign(0)
+		self:scaletoclipped(capWideScale(get43size(bannerw * 1.05), bannerw), capWideScale(get43size(bannerh * 1.05), bannerh)):diffusealpha(1)
 	end,
 	MintyFreshCommand = function(self)
 		if INPUTFILTER:IsBeingPressed("tab") then
@@ -837,7 +824,7 @@ t[#t + 1] = Def.Sprite {
 -- cdtitle
 t[#t + 1] = UIElements.SpriteButton(1, 1, nil) .. {
 	InitCommand = function(self)
-		self:xy(capWideScale(get43size(344), 364) + 90, capWideScale(get43size(345), 220))
+		self:xy(capWideScale(get43size(290), 364) + 90, capWideScale(get43size(290), 220))
 		self:halign(0.5):valign(1):bob():effectmagnitude(0,1,0)
 	end,
 	CurrentStyleChangedMessageCommand = function(self)
@@ -890,20 +877,6 @@ t[#t + 1] = UIElements.SpriteButton(1, 1, nil) .. {
 				TOOLTIP:Hide()
 			end
 		end
-	end,
-	ChartPreviewOnMessageCommand = function(self)
-		if not itsOn then
-			self:addx(capWideScale(34, 0))
-			itsOn = true
-		end
-		self:playcommand("ToolTip")
-	end,
-	ChartPreviewOffMessageCommand = function(self)
-		if itsOn then
-			self:addx(capWideScale(-34, 0))
-			itsOn = false
-		end
-		self:playcommand("ToolTip")
 	end,
 	MouseOverCommand = function(self)
 		self:playcommand("ToolTip")
@@ -1145,7 +1118,7 @@ t[#t + 1] = Def.ActorFrame {
 			mcbootlarder = self:GetParent():GetParent():GetChild("ChartPreview")
 			SCREENMAN:GetTopScreen():AddInputCallback(MPinput)
 			SCREENMAN:GetTopScreen():AddInputCallback(ihatestickinginputcallbackseverywhere)
-			self:xy(620, 218):zoom(0.5):halign(0)
+			self:xy(capWideScale(400,630), capWideScale(198,218)):halign(0):zoom(0.5)
 			self:diffuse(getMainColor("positive"))
 		end,
 		MouseDownCommand = function(self, params)
@@ -1201,7 +1174,7 @@ t[#t + 1] = Def.ActorFrame {
 	UIElements.TextToolTip(1, 1, "Common Normal") .. {
 		Name = "PlayerOptionsButton",
 		BeginCommand = function(self)
-			self:xy(520, 218):halign(0):zoom(0.5)
+			self:xy(520, capWideScale(198,218)):halign(0):zoom(0.5)
 			self:settext(translated_info["PlayerOptions"])
 			self:diffuse(getMainColor("positive"))
 		end,

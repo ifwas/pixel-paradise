@@ -39,9 +39,9 @@ t[#t+1] = Def.ActorFrame {
     Def.Sprite {
         Name = "BG",
         InitCommand = function(self)
-            self:xy(bgThingX + capWideScale(get43size(255),270), SCREEN_CENTER_Y + 170)
-            self:zoomto(0.7, 0.7)
+            self:xy(bgThingX + capWideScale(get43size(400),270), SCREEN_CENTER_Y + 170)
             self:Load(THEME:GetPathG("","spr/tab/explanationTagBox")):SetTextureFiltering(false)
+            self:zoomto(200, 60)
             self:diffuse(getMainColor("positive")):diffusealpha(0)
         end,
         volumeChangedMessageCommand = function(self)
@@ -56,7 +56,7 @@ t[#t + 1] = UIElements.TextToolTip(1, 1, "Common Normal") .. {
     Name = "Name",
     InitCommand = function(self)
         self:halign(0)
-        self:xy(bgThingX + capWideScale(get43size(148),205), SCREEN_CENTER_Y + 160):diffusealpha(0)
+        self:xy(bgThingX + capWideScale(get43size(320),205), SCREEN_CENTER_Y + 160):diffusealpha(0)
         self:zoom(0.65)
         self:maxwidth(capWideScale(360,800))
         self:maxheight(22)
@@ -105,7 +105,7 @@ t[#t+1] = Def.ActorFrame {
         Name = "BG",
         InitCommand = function(self)
             self:halign(0)
-            self:xy(bgThingX + capWideScale(get43size(106),180), SCREEN_CENTER_Y + 180)
+            self:xy(bgThingX + capWideScale(get43size(280),180), SCREEN_CENTER_Y + 180)
             self:zoomto(175 * curGameVolume, 2)
             self:diffuse(getMainColor("positive"))
             self:diffusealpha(0)
@@ -118,13 +118,13 @@ t[#t+1] = Def.ActorFrame {
     },
 }
 
-t[#t+1] = Def.ActorFrame {
+t[#t+1] = Def.ActorFrame { --i think i was high while writting this
     Name = "VolumeIndicatorIcon",
     Def.Sprite {
         Name = "volumeicon",
         Texture=THEME:GetPathG("","volume");
         InitCommand = function(self)
-            self:xy(bgThingX + capWideScale(get43size(120),188), SCREEN_CENTER_Y + 160):diffusealpha(0)
+            self:xy(bgThingX + capWideScale(get43size(295),188), SCREEN_CENTER_Y + 160):diffusealpha(0)
             self:zoom(0.45)
         end,
         volumeChangedMessageCommand = function(self)

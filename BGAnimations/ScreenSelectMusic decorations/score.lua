@@ -13,7 +13,7 @@ local nestedTabs = {
 }
 local hasReplayData
 
-local frameX = 363
+local frameX = capWideScale(260,363)
 local frameY = 50
 local frameWidth = SCREEN_WIDTH * 0.56
 local frameHeight = 400
@@ -222,7 +222,7 @@ local ret = Def.ActorFrame {
 					moped:playcommand("SetFromLeaderboard", leaderboard)
 				end
 			)	-- this is also intentionally super bad so we actually do something about it -mina
-			elseif (SCREENMAN:GetTopScreen():GetName() == "ScreenSelectMusic" or SCREENMAN:GetTopScreen():GetName() == "ScreenNetSelectMusic") and ((getTabIndex() == 2 and nestedTab == 2) or collapsed) then
+			elseif (SCREENMAN:GetTopScreen():GetName() == "ScreenSelectMusic" or SCREENMAN:GetTopScreen():GetName() == "ScreenNetSelectMusic") and ((getTabIndex() == 2 and nestedTab == 2)) then
 				DLMAN:RequestChartLeaderBoardFromOnline(
 				chartkey,
 				function(leaderboard)
@@ -373,9 +373,9 @@ local t = Def.ActorFrame {
 	Def.Sprite {
 		Name = "FrameDisplay",
 		InitCommand = function(self)
-			self:y(30)
+			self:xy(-2,30)
 			self:Load(THEME:GetPathG("","spr/tab/ScoreLocalBox")):SetTextureFiltering(false)
-			self:zoom(0.45):halign(0):valign(0)
+			self:zoomto((SCREEN_WIDTH * capWideScale(0.595, 0.57)), 370):halign(0):valign(0)
 			self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 		end,
 		CollapseCommand = function(self)
@@ -391,9 +391,8 @@ local t = Def.ActorFrame {
 t[#t + 1] = Def.Sprite {
 		Name = "HeaderBar",
 		InitCommand = function(self)
-			self:x(7)
-			self:zoom(0.44):halign(0):valign(0)
 			self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
+			self:zoomto((SCREEN_WIDTH * 0.59), 27):halign(0):valign(0)
 			self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 		end
 	}
@@ -633,7 +632,7 @@ local function makeJudge(index, judge)
 	local t = Def.ActorFrame {
 		
 		InitCommand = function(self)
-			self:xy(-420,170 + ((index - 1) * 18))
+			self:xy(capWideScale(-320, -420),170 + ((index - 1) * 18))
 		end,
 
 		Def.Quad {
@@ -675,7 +674,7 @@ local function makeJudge(index, judge)
 		LoadFont("Common Large") .. {
 			Name = "Label",
 			InitCommand = function(self)
-				self:xy(frameX + capWideScale(get43size(330),325), frameY - 80 + ((index - 1))) --325
+				self:xy(frameX + capWideScale(get43size(280),325), frameY - 80 + ((index - 1))) --325
 				self:zoom(0.25):halign(1)
 				self:settext("")
 			end,
@@ -689,7 +688,7 @@ local function makeJudge(index, judge)
 		},
 		LoadFont("Common Large") .. {
 			InitCommand = function(self)
-				self:xy(frameX + capWideScale(get43size(340),330), frameY - 80 + ((index - 1))):settext("") --330
+				self:xy(frameX + capWideScale(get43size(287),330), frameY - 80 + ((index - 1))):settext("") --330
 				self:zoom(0.2):halign(0)
 				self:settext("")
 			end,
@@ -837,7 +836,7 @@ l[#l + 1] = Def.ActorFrame {
 	LoadFont("Common Large") .. {
 		Name = "EvalViewer",
 		InitCommand = function(self)
-			self:xy((frameWidth - offsetX) / 2.1, frameHeight - headeroffY - 18 - offsetY):zoom(0.35):settext("")
+			self:xy((frameWidth - offsetX + capWideScale(65,0)) / 2.1, frameHeight - headeroffY - 18 - offsetY):zoom(capWideScale(0.30,0.35)):settext("")
 			self:diffuse(getMainColor("positive"))
 		end,
 		BeginCommand = function(self)
@@ -971,7 +970,7 @@ t[#t + 1] = l
 t[#t + 1] = Def.Quad {
 	Name = "ScrollBar",
 	InitCommand = function(self)
-		self:x(fuckX):zoomto(4, 0):halign(1):valign(1):diffuse(getMainColor("highlight")):diffusealpha(0.75)
+		self:x(fuckX + capWideScale(15, 0)):zoomto(4, 0):halign(1):valign(1):diffuse(getMainColor("highlight")):diffusealpha(0.75)
 		self:fadetop(0.2):fadebottom(0.2)
 	end,
 	DisplayCommand = function(self)

@@ -68,7 +68,7 @@ local t = Def.ActorFrame {
 	end
 }
 
-local frameX = 400
+local frameX = capWideScale(270,400)
 local frameY = 45
 local frameWidth = capWideScale(360, 420)
 local frameHeight = 350
@@ -100,7 +100,7 @@ t[#t + 1] = Def.Sprite {
 	InitCommand = function(self)
 		self:xy(frameX, frameY)
 		self:Load(THEME:GetPathG("","spr/tab/profilebox")):SetTextureFiltering(false)
-		self:zoom(0.43):halign(0):valign(0)
+		self:zoomto(frameWidth + 10,frameHeight):halign(0):valign(0)
 		self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 	end
 }
@@ -608,7 +608,7 @@ end
 local function recentButton()
 	local t = Def.ActorFrame {
 		InitCommand = function(self)
-			self:xy(rankingX + (3.5) * rankingTitleSpacing, 24 * 0.75):valign(1)
+			self:xy(rankingX + capWideScale(5,3.5) * rankingTitleSpacing, 24 * 0.75):valign(1)
 		end,
 		UIElements.QuadButton(1, 1) .. {
 			InitCommand = function(self)

@@ -9,14 +9,14 @@ local width = SCREEN_WIDTH * 0.6
 local dwidth = width - offx * 2
 local height = (numpacks + 2) * packspaceY
 
-local adjx = 14
-local c1x = 10
+local adjx = 15
+local c1x = -10
 local c2x = c1x + (tzoom * 7 * adjx) -- guesswork adjustment for epxected text length
 local c6x = dwidth -- right aligned cols
-local c5x = c6x - adjx - (tzoom * 7 * adjx) -- right aligned cols
+local c5x = c6x - adjx - (tzoom * 0 * adjx) - 50 -- right aligned cols
 local c4x = c5x - adjx - (tzoom * 4 * adjx) -- right aligned cols
-local c3x = c4x - adjx - (tzoom * 6.6 * adjx) -- right aligned cols
-local c2xc3x = (c3x - adjx - (tzoom * 6 * adjx))
+local c3x = c4x - adjx - (tzoom * 3 * adjx) -- right aligned cols
+local c2xc3x = (c3x - adjx - (tzoom * 6 * adjx)) + 10
 local headeroff = packspaceY / 1.5
 
 local hoverAlpha = 0.6
@@ -96,8 +96,8 @@ local o = Def.ActorFrame {
 	Def.Quad {
 		Name = "HeaderBG",
 		InitCommand = function(self)
-			self:xy(offx, headeroff)
-			self:zoomto(dwidth, pdh)
+			self:xy(offx - 20, headeroff)
+			self:zoomto(dwidth + 21, pdh)
 			self:halign(0)
 			self:diffuse(color("#2f2f2f"))
 		end
@@ -161,7 +161,7 @@ local o = Def.ActorFrame {
 	UIElements.TextToolTip(1, 1, "Common Normal") .. {
 		Name = "SizeHeader",
 		InitCommand = function(self)
-			self:xy(c3x, headeroff)
+			self:xy(c3x - 10, headeroff)
 			self:diffuse(color("#08faea"))
 			self:zoom(tzoom)
 			self:halign(1)
@@ -292,7 +292,7 @@ local function makePackDisplay(i)
 			Name = "PackIndex",
 			InitCommand = function(self)
 				self:x(c1x)
-				self:zoom(tzoom)
+				self:zoom(tzoom *0.75)
 				self:halign(0)
 			end,
 			DisplayCommand = function(self)
@@ -302,11 +302,11 @@ local function makePackDisplay(i)
 		UIElements.TextToolTip(1, 1, "Common normal") .. {
 			Name = "PackName",
 			InitCommand = function(self)
-				self:x(c2x)
+				self:x(c2x - 14)
 				self:zoom(tzoom)
 
 				 -- x of left aligned col 2 minus x of right aligned col 3 minus roughly how wide column 3 is plus margin
-				self:maxwidth((c2xc3x - c2x - c2x*0.8) / tzoom)
+				self:maxwidth(capWideScale(200,470))
 				self:halign(0)
 			end,
 			DisplayCommand = function(self)
@@ -333,7 +333,7 @@ local function makePackDisplay(i)
 			Name = "PackAverageDiff",
 			InitCommand = function(self)
 				self:x(c2xc3x)
-				self:zoom(tzoom)
+				self:zoom(tzoom * 0.96)
 				self:halign(1)
 			end,
 			DisplayCommand = function(self)
@@ -345,7 +345,7 @@ local function makePackDisplay(i)
 		LoadFont("Common normal") .. {
 			Name = "PackSize",
 			InitCommand = function(self)
-				self:x(c3x):zoom(tzoom):halign(1)
+				self:x(c3x - 10):zoom(tzoom * 0.6):halign(1)
 			end,
 			DisplayCommand = function(self)
 				local psize = packinfo:GetSize() / 1024 / 1024

@@ -117,8 +117,8 @@ local o = Def.ActorFrame {
 	-- headers
 	Def.Sprite {
 		InitCommand = function(self)
-			self:xy(offx, headeroff):zoom(0.45):halign(0)
 			self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
+			self:xy(offx, headeroff):zoomto(width, 28):halign(0)
 			self:diffuse(getMainColor("highlight"))
 		end
 	},
@@ -289,8 +289,8 @@ local function makeGoalDisplay(i)
 		end,
 		Def.Sprite {
 			InitCommand = function(self)
-				self:x(offx):zoom(0.45):halign(0):diffusealpha(0)
 				self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
+				self:x(offx):zoomto(width, 30):halign(0):diffusealpha(0)
 			end,
 			DisplayCommand = function(self)
 				

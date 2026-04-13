@@ -1,5 +1,5 @@
 local searchstring = ""
-local frameX = 370
+local frameX = capWideScale(270,370)
 local frameY = 300
 local active = false
 local whee

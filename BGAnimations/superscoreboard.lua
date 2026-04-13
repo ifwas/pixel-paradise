@@ -6,8 +6,8 @@ local currentCountry = "Global"
 
 local numscores = 13
 local ind = 0
-local offx = 5
-local width = SCREEN_WIDTH * 0.56
+local offx = 3
+local width = SCREEN_WIDTH * 0.58
 local dwidth = width - offx * 2
 local height = (numscores + 2) * packspaceY - packspaceY / 3 -- account dumbly for header being moved up
 
@@ -187,9 +187,8 @@ local o = Def.ActorFrame {
 	Def.Sprite {
 		Name = "HeaderBar",
 		InitCommand = function(self)
-			self:x(7)
-			self:zoom(0.44):halign(0):valign(0)
-			self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
+			self:halign(0):valign(0)
+			self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false):zoomto(width, packspaceY)
 			self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 		end
 	},
@@ -357,10 +356,10 @@ local function makeScoreDisplay(i)
 		end,
 		UIElements.SpriteButton(1, 1, nil) .. {
 			InitCommand = function(self)
-				self:x(offx):zoom(0.44):halign(0):diffusealpha(0)
+				self:x(offx):halign(0):diffusealpha(0)
 			end,
 			DisplayCommand = function(self)
-				self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
+				self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false):zoomto(width, packspaceY)
 				self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 				self:diffusealpha(1)
 			end,

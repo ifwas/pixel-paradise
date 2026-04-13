@@ -32,7 +32,7 @@ t[#t + 1] = Def.Sprite {
 t[#t + 1] = Def.Sprite {
 	Name = "Banner",
 	OnCommand = function(self)
-		self:x(SCREEN_CENTER_X + 68):y(SCREEN_CENTER_Y - 120):valign(0):halign(0)
+		self:x(SCREEN_CENTER_X + capWideScale(60,68)):y(SCREEN_CENTER_Y - capWideScale(96,120)):valign(0):halign(0)
 		self:scaletoclipped(capWideScale(get43size(336), 336), capWideScale(get43size(105), 105))
 		local bnpath = GAMESTATE:GetCurrentSong():GetBannerPath()
 		self:visible(true)

@@ -113,8 +113,8 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		--The main quad
 		Def.Sprite {
 			InitCommand = function(self)
-				self:xy(framex, framey + (drawindex * spacing) - 4):zoom(0.44):halign(0):valign(0):diffuse(getMainColor("highlight"))
 				self:Load(THEME:GetPathG("", "spr/evaluation/scoreEvalBox"))
+				self:xy(framex, framey + (drawindex * spacing) - 4):zoomto(frameWidth, 35):halign(0):valign(0):diffuse(getMainColor("highlight"))
 			end,
 			BeginCommand = function(self)
 				self:visible(GAMESTATE:IsHumanPlayer())
@@ -123,7 +123,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		--Highlight quad for the current score
 		Def.Quad {
 			InitCommand = function(self)
-				self:xy(framex, framey + (drawindex * spacing) - 3):zoomto(frameWidth, 31):halign(0):valign(0):diffuse(
+				self:xy(framex, framey + (drawindex * spacing) - 3):zoomto(frameWidth, 30):halign(0):valign(0):diffuse(
 					color("#ffffff")
 				):diffusealpha(0.3):diffuseleftedge(color("#33333300"))
 			end,
@@ -197,7 +197,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		--ClearType lamps
 		Def.Quad {
 			InitCommand = function(self)
-				self:xy(framex + 220, framey + (drawindex * spacing) - 3):zoomto(3, 31):halign(0):valign(0)
+				self:xy(framex + capWideScale(161,220), framey + (drawindex * spacing) - 4):zoomto(3, 31):halign(0):valign(0)
 			end,
 			BeginCommand = function(self)
 				if hsTable[index] == nil then return end
@@ -208,7 +208,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		--rank
 		LoadFont("Common normal") .. {
 			InitCommand = function(self)
-				self:xy(framex + 230, framey + 12 + (drawindex * spacing)):zoom(0.35)
+				self:xy(framex + capWideScale(175,230), framey + 12 + (drawindex * spacing)):zoom(0.35)
 			end,
 			HahaThisCodeINeedHelpCommand = function(self, params)
 				if params.doot == index then
@@ -270,7 +270,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		LoadFont("Common normal") .. {
 			Name = "Grade",
 			InitCommand = function(self)
-				self:xy(framex + 130 + capWideScale(get43size(0), 50), framey + 2 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
+				self:xy(framex + 130 + capWideScale(get43size(20), 50), framey + 2 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
 					(frameWidth - 15) / 0.35
 				)
 			end,
@@ -286,7 +286,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		LoadFont("Common normal") .. {
 			Name = "ClearType",
 			InitCommand = function(self)
-				self:xy(framex + 130 + capWideScale(get43size(0), 50), framey + 12 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
+				self:xy(framex + 130 + capWideScale(get43size(20), 50), framey + 12 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
 					(frameWidth - 15) / 0.35
 				)
 			end,
@@ -301,7 +301,7 @@ local function scoreitem(pn, index, scoreIndex, drawindex)
 		--max combo
 		LoadFont("Common normal") .. {
 			InitCommand = function(self)
-				self:xy(framex + 130 + capWideScale(get43size(0), 50), framey + 22 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
+				self:xy(framex + 130 + capWideScale(get43size(20), 50), framey + 22 + (drawindex * spacing)):zoom(0.35):halign(0.5):maxwidth(
 					(frameWidth - 15) / 0.35
 				)
 			end,

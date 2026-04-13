@@ -1,7 +1,7 @@
 -- all the preview stuff should be var'd and used consistently -mina
 local prevZoom = 0.65
 local musicratio = 1
-local NotefieldPosition = capWideScale(295,530)
+local NotefieldPosition = capWideScale(370,530)
 local wodth = capWideScale(280, 300)
 local hidth = 40
 local yeet
@@ -11,7 +11,7 @@ local calcinfo
 
 local ChordDensityThing =
 {
-	SeekPositionX = capWideScale(200, 380),
+	SeekPositionX = capWideScale(230, 380),
 	SeektextPosX = 295,
 	SeekPosY = 380
 }
@@ -152,7 +152,7 @@ local t = Def.ActorFrame {
 		end,
 		CurrentStyleChangedMessageCommand=function(self)
 			local cols = GAMESTATE:GetCurrentStyle():ColumnsPerPlayer()
-			self:zoomto(52 * cols, SCREEN_HEIGHT * 1.2)
+			self:zoomto(48.5 * cols, SCREEN_HEIGHT * 1.1)
 		end
 	},
 	LoadFont("Common Large") .. {

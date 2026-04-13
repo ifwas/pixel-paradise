@@ -7,8 +7,8 @@ local steps
 local curInput = ""
 local frameX = capWideScale(270,380)
 local frameY = 45
-local frameWidth = capWideScale(360, 400)
-local frameHeight = 350
+local frameWidth = capWideScale(365, 400)
+local frameHeight = capWideScale(290,290)
 local fontScale = 0.3
 local tagsperpage = 14
 local offsetX = 120
@@ -133,8 +133,8 @@ local t = Def.ActorFrame {
 
 t[#t + 1] = Def.Sprite {
 	InitCommand = function(self)
-		self:xy(frameX, frameY + offsetY):zoom(0.44):halign(0):valign(0):diffuse(getMainColor("tabs"))
-		self:Load(THEME:GetPathG("","spr/tab/frameTagBox")):SetTextureFiltering(false)
+		self:xy(frameX, frameY + offsetY):halign(0):valign(0):diffuse(getMainColor("tabs"))
+		self:Load(THEME:GetPathG("","spr/tab/frameTagBox")):SetTextureFiltering(false):zoomto(frameWidth,frameHeight)
 		self:diffuse(getMainColor("positive"))
 	end
 }
@@ -281,7 +281,7 @@ local r = Def.ActorFrame {
 local function makeTag(i)
 	local t = Def.ActorFrame {
 		InitCommand = function(self)
-			local colPos = i / 8 >= 1 and 20 + (frameWidth / 1.35) or offsetX + 10 --in case you don't know math, every 8 tags a new row is created, the (framewidth / 1.35) division thing makes the distance apart so yeahhhhhhhhhhh
+			local colPos = i / 8 >= 1 and 20 + (frameWidth / capWideScale(2.1,1.35)) or offsetX + capWideScale(-105,10) --in case you don't know math, every 8 tags a new row is created, the (framewidth / 1.35) division thing makes the distance apart so yeahhhhhhhhhhh
 			local row = i > 7 and i - 8 or i - 1
 			self:xy(colPos, offsetY + 60 + row * tagYSpacing)
 			self:visible(true)
@@ -406,14 +406,14 @@ local fawa = {
 local function funcButton(i)
 	local t = Def.ActorFrame {
 		InitCommand = function(self)
-			local colPos = (i - 1) * (frameWidth / 3 - 5) + capWideScale(370,450)
+			local colPos = (i - 1) * (frameWidth / 3 - 5) + capWideScale(330,450)
 			self:xy(colPos, frameY + capWideScale(80, 80) - 55)
 			self:visible(true)
 		end,
 		UIElements.SpriteButton(1, 1) .. {
 			InitCommand = function(self)
-				self:zoom(0.45):halign(0.5):valign(0)
-				self:Load(THEME:GetPathG("","spr/tab/explanationTagBox")):SetTextureFiltering(false)
+				self:halign(0.5):valign(0)
+				self:Load(THEME:GetPathG("","spr/tab/explanationTagBox")):SetTextureFiltering(false):zoomto(frameWidth / 3, 32)
 		        self:diffuse(getMainColor("positive"))
 			end,
 			BORPBORPNORFNORFcCommand = function(self)
@@ -474,8 +474,8 @@ r[#r + 1] = Def.ActorFrame {
 	},
 	UIElements.SpriteButton(1, 1, nil) .. {
 		InitCommand = function(self)
-			self:addx(129):addy(3):zoom(0.45):halign(0)
-			self:Load(THEME:GetPathG("","spr/tab/tagAddText")):SetTextureFiltering(false)
+			self:addx(129):addy(3):halign(0)
+			self:Load(THEME:GetPathG("","spr/tab/tagAddText")):SetTextureFiltering(false):zoomto(frameWidth / 1.7, 24)
 		    self:diffuse(getMainColor("positive"))
 		end,
 		MouseDownCommand = function(self, params)

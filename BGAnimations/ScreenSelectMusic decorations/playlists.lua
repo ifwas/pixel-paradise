@@ -33,7 +33,7 @@ local t = Def.ActorFrame {
 	end
 }
 
-local frameX = capWideScale(270,380)
+local frameX = capWideScale(250,380)
 local frameY = 45
 local frameWidth = capWideScale(360, 400)
 local frameHeight = 350
@@ -117,7 +117,7 @@ t[#t + 1] = LoadFont("Common Normal") .. {
 }
 t[#t + 1] = LoadFont("Common Normal") .. {
 	InitCommand = function(self)
-		self:xy(frameWidth + 360, frameY + 2):zoom(0.65):halign(1)
+		self:xy(frameWidth + capWideScale(270,360), frameY + 2):zoom(0.65):halign(1)
 	end,
 	DisplaySinglePlaylistMessageCommand = function(self)
 		self:settext(translated_info["ExplainAdd"])
@@ -625,7 +625,7 @@ b2[#b2 + 1] = UIElements.TextToolTip(1, 1, "Common Large") .. {
 -- Back button
 b2[#b2 + 1] = UIElements.TextToolTip(1, 1, "Common Large") .. {
 	InitCommand = function(self)
-		self:zoom(0.3):x(capWideScale(-195,20)):diffuse(getMainColor("positive"))
+		self:zoom(0.3):x(capWideScale(10,20)):diffuse(getMainColor("positive"))
 		self:settext(translated_info["Back"])
 	end,
 	MouseDownCommand = function(self, params)
@@ -650,7 +650,7 @@ r[#r + 1] = Def.ActorFrame {
 	end,
 	UIElements.TextToolTip(1, 1, "Common Large") .. {
 		InitCommand = function(self)
-			self:x(capWideScale(190,270)):halign(1):zoom(0.25):diffuse(getMainColor("positive"))
+			self:x(capWideScale(frameWidth + 34,270)):halign(1):zoom(0.25):diffuse(getMainColor("positive"))
 			self:settext(translated_info["Next"])
 		end,
 		DisplayAllPlaylistsMessageCommand = function(self)
@@ -676,7 +676,7 @@ r[#r + 1] = Def.ActorFrame {
 	UIElements.TextToolTip(1, 1, "Common Large") .. {
 		InitCommand = function(self)
 			self:halign(0):zoom(0.25):diffuse(getMainColor("positive"))
-			self:settext(translated_info["Previous"]):x(-50)
+			self:settext(translated_info["Previous"]):x(capWideScale(80,-50))
 		end,
 		DisplayAllPlaylistsMessageCommand = function(self)
 			self:visible(false)
@@ -836,7 +836,7 @@ r[#r + 1] = Def.ActorFrame {
 	},
 	LoadFont("Common Large") .. {
 		InitCommand = function(self)
-			self:x(105):halign(0.5):zoom(0.25)
+			self:x(capWideScale(220,105)):halign(0.5):zoom(0.25)
 		end,
 		SetCommand = function(self)
 			self:settextf(
@@ -970,13 +970,13 @@ local function PlaylistSelectLabel(i)
 			end,
 			AllDisplayMessageCommand = function(self)
 				self:halign(0.5)
-				self:settext(((rankingPage - 1) * chartsperplaylist) + i + ((currentplaylistpage - 1) * playlistsperpage) .. "."):x(320)
+				self:settext(((rankingPage - 1) * chartsperplaylist) + i + ((currentplaylistpage - 1) * playlistsperpage) .. "."):x(capWideScale(260,320))
 			end
 		},
 		LoadFont("Common Large") .. {
 			InitCommand = function(self)
 				self:halign(0):zoom(fontScale)
-				self:xy(315, row2Yoffset)
+				self:xy(capWideScale(275,315), row2Yoffset)
 			end,
 			AllDisplayMessageCommand = function(self)
 				if allplaylists[i + ((currentplaylistpage - 1) * playlistsperpage)] then
@@ -1087,7 +1087,7 @@ r[#r + 1] = Def.ActorFrame {
 	UIElements.TextToolTip(1, 1, "Common Large") .. {
 		InitCommand = function(self)
 			self:halign(0):zoom(0.25):diffuse(getMainColor("positive"))
-			self:settext(translated_info["Previous"]):x(-280)
+			self:settext(translated_info["Previous"]):x(capWideScale(-240,-280))
 		end,
 		DisplaySinglePlaylistMessageCommand = function(self)
 			self:visible(false)

@@ -39,7 +39,7 @@ local group_rand = ""
 t[#t + 1] = UIElements.TextToolTip(1, 1, "Common Large") .. {
 	Name="sort",
 	InitCommand = function(self)
-		self:xy(frameX, frameY + 5):zoom(0.25):halign(0.5):maxwidth((frameWidth) / 0.23)
+		self:xy(capWideScale(frameX - 40,frameX), frameY + 5):zoom(0.25):halign(0.5):maxwidth(capWideScale(frameWidth / 0.3,frameWidth / 0.23))
 	end,
 	BeginCommand = function(self)
 		self:queuecommand("Set")
