@@ -7,7 +7,7 @@ local currentCountry = "Global"
 local numscores = 13
 local ind = 0
 local offx = 3
-local width = SCREEN_WIDTH * 0.58
+local width = SCREEN_WIDTH * capWideScale(0.58, 0.566)
 local dwidth = width - offx * 2
 local height = (numscores + 2) * packspaceY - packspaceY / 3 -- account dumbly for header being moved up
 
