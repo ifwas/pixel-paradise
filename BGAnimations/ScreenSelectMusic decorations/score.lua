@@ -392,7 +392,7 @@ t[#t + 1] = Def.Sprite {
 		Name = "HeaderBar",
 		InitCommand = function(self)
 			self:Load(THEME:GetPathG("","spr/tab/OnlineScoreBox")):SetTextureFiltering(false)
-			self:zoomto((SCREEN_WIDTH * 0.59), 27):halign(0):valign(0)
+			self:zoomto((SCREEN_WIDTH * capWideScale(0.59, 0.566)), 27):halign(0):valign(0)
 			self:diffuse(ColorMultiplier(getMainColor("highlight"),1.5))
 		end
 	}
