@@ -87,7 +87,6 @@ t[#t + 1] = UIElements.SpriteButton(1, 1, THEME:GetPathG("", "spr/wheel/randomSo
 t[#t + 1] = LoadActor("../_cursor")
 t[#t + 1] = LoadActor("../_halppls")
 
-updateDiscordStatusForMenus()
 updateNowPlaying()
 
 return t

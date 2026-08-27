@@ -136,5 +136,5 @@ t[#t+1] = Def.ActorFrame { --i think i was high while writting this
 
 
 
-curGameVolume = PREFSMAN:GetPreference("SoundVolume")
+curGameVolume = PREFSMAN:GetPreference("SoundVolumeBGM")
 return t

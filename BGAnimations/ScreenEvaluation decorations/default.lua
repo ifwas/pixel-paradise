@@ -220,12 +220,14 @@ local function scoreBoard(pn, position)
 				aboutToForceWindowSettings = true
 				MESSAGEMAN:Broadcast("ForceWindow", {judge=4})
 				MESSAGEMAN:Broadcast("RecalculateGraphs", {judge=4})
+				MESSAGEMAN:Broadcast("LoadScoreInOffsetPlot", {score = score})
 			else
 				judge = scaleToJudge(SCREENMAN:GetTopScreen():GetReplayJudge())
 				clampJudge()
 				judge2 = judge
 				MESSAGEMAN:Broadcast("ForceWindow", {judge=judge})
 				MESSAGEMAN:Broadcast("RecalculateGraphs", {judge=judge})
+				MESSAGEMAN:Broadcast("LoadScoreInOffsetPlot", {score = score})
 			end
 		end,
 		ChangeScoreCommand = function(self, params)
@@ -1454,6 +1456,5 @@ if GAMESTATE:IsPlayerEnabled() then
 end
 
 t[#t + 1] = LoadActor("../offsetplot")
-updateDiscordStatus(true)
 
 return t
